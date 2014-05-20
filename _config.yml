@@ -6,16 +6,15 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            Poole
-tagline:          The Jekyll Butler
-url:              http://getpoole.com
+title:            Mike Littlefield
+url:              http://192.168.0.156:4000
 paginate:         1
 author:
-  name:           Mark Otto
-  url:            https://twitter.com/mdo
-  email:          markdotto@gmail.com
+  name:          Mike Littlefield 
+
+# GitHub Configuration Options
+safe: true
+lsi: false
 
 # Custom vars
 version:          1.0.0
-github:
-  repo:           https://github.com/poole/poole
