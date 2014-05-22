@@ -6,17 +6,14 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            Poole
-tagline:          The Jekyll Butler
-# url:              http://getpoole.com
+title:            Mike Littlefield 
 paginate:         1
-#baseurl:	  http://mikstelit.github.io
 author:
-  name:           Mark Otto
-  url:            https://twitter.com/mdo
-  email:          markdotto@gmail.com
+  name:           Mike Littlefield 
+  url:            https://mikstelit.github.io
+  email:          mike.littlefield@live.com 
 
 # Custom vars
 version:          1.0.0
-github:
-  repo:           https://github.com/poole/poole         1.0.0
+github:           
+repo:           https://github.com/mikstelit/miksteli.github.io
