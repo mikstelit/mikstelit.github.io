@@ -4,13 +4,31 @@
  <title>Mike Littlefield</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-05-27T19:00:49-07:00</updated>
+ <updated>2014-05-27T19:31:44-07:00</updated>
  <id></id>
  <author>
    <name>Mike Littlefield</name>
    <email>mike.littlefield@live.com</email>
  </author>
 
+ 
+ <entry>
+   <title>PowerShell Port Tester</title>
+   <link href="//2014/05/07/powershell-port-tester/"/>
+   <updated>2014-05-07T00:00:00-07:00</updated>
+   <id>/2014/05/07/powershell-port-tester</id>
+   <content type="html">&lt;p&gt;We recently changed the VPN solution used at work.  Some users have had issues using the VPN from certain networks.  They would receive errors saying the remote server could not be contacted.  I ruled out any DNS issues as possible causes and then thought it could have something to do with the port being used by the VPN client.&lt;/p&gt;
+
+&lt;p&gt;Our understanding was that the VPN client connected to the server using port 443 so there should be no issues traversing firewalls.  I wanted to confirm this so I fired up Process Monitor and connected using the VPN.  To my surprise, the VPN client was connecting using port 10443.  To confirm this, I tried telnetting to the VPN server using port 10443 and it connected.  When trying to connect to the VPN server using telnet and port 443, the connection failed.&lt;/p&gt;
+
+&lt;p&gt;I thought this could be the possible cause of some of the connection issues experienced by our users.  I wanted a simple way to test if a port was open on a remote system without having to install the telnet client.  I came up with this solution in PowerShell:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;(New-Object Net.Sockets.TcpClient).Connect(“www.google.com”,”80”)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If the port is open and an application is behind it accepting connections, PowerShell will return to a blinking cursor.  If the connection fails, you will receive an error in PowerShell.  &lt;/p&gt;
+
+&lt;p&gt;I connected to a user’s computer that was experiencing the issue from home and my PowerShell test.  Sure enough, I was able to establish outbound connections to resources on ports 80 and 443, but not many other ports.  The user mentioned she had just received a new modem from Comcast that was an all-in-one firewall, router, and WAP.  I looked up this device and Comcast calls it a Wireless Gateway.  You can control what outbound ports are blocked on the device by raising and lowering the security level on the device.  This does not change any settings for inbound connections.  After lowering the security level, the PowerShell test worked on port 10443 to our VPN server and the VPN client began to connect.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Outlook Instant Search</title>
@@ -33,11 +51,8 @@ The filter host process 13100 did not respond and is being forcibly terminated.
 &lt;h2&gt;Office Configuration Analyzer Tool&lt;/h2&gt;
 
 &lt;p&gt;I found this very interesting tool named Office Configuration Analyzer Tool or OffCAT.  This tool returns a lot of useful information about the setup and configuration of Office including information about installed iFilters.  I ran the tool and sure enough under Configuration Details &amp;gt; Search &amp;gt; PDF iFilter &amp;gt; iFilter dll details, there was the following entry:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Path =C:\Program Files(x86)\Xerox Scan To PC Desktop 11\PDF Professional 7\PDFProFilter.dll&lt;/p&gt;
-&lt;/blockquote&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Path =C:\Program Files(x86)\Xerox Scan To PC Desktop 11\PDF Professional 7\PDFProFilter.dll
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It all made sense.  The computers having the issue all had Nuance PDF Professional installed and they all started having the search issue in Outlook shortly after the installation of Nuance PDF Professional.  I found an &lt;a href=&quot;http://nuance.custhelp.com/app/answers/detail/a_id/5626/%7E/pdfprofiltsrv.exe,-nuancewds.exe-and-microsoft-windows-desktop-search&quot;&gt;article&lt;/a&gt; on Nuance&amp;#39;s website that mentions how their iFilter can sometimes cause issues with Windows Search.  To disable the iFilter, they recommend disabling the PDFProFiltSrv service and ending the NuanceWDS.exe process if it is running.  I also found that if you run a repair on Adobe Acrobat Reader, the Nuance PDF iFilter will be replaced by the Adobe Acrobat Reader iFilter.  You can also choose not to install the Nuance iFilter during the installation process by choosing the custom installation options.&lt;/p&gt;
 
 &lt;p&gt;After removing the Nuance PDF iFilter, an index that was taking days to rebuild would rebuild in under an hour and Outlook began returning complete search results.&lt;/p&gt;

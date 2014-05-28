@@ -22,7 +22,9 @@ It looked like something was causing the search process to crash.  I tried using
 ##Office Configuration Analyzer Tool
 I found this very interesting tool named Office Configuration Analyzer Tool or OffCAT.  This tool returns a lot of useful information about the setup and configuration of Office including information about installed iFilters.  I ran the tool and sure enough under Configuration Details > Search > PDF iFilter > iFilter dll details, there was the following entry:
 
->Path =C:\Program Files(x86)\Xerox Scan To PC Desktop 11\PDF Professional 7\PDFProFilter.dll
+```
+Path =C:\Program Files(x86)\Xerox Scan To PC Desktop 11\PDF Professional 7\PDFProFilter.dll
+```
 
 It all made sense.  The computers having the issue all had Nuance PDF Professional installed and they all started having the search issue in Outlook shortly after the installation of Nuance PDF Professional.  I found an [article](http://nuance.custhelp.com/app/answers/detail/a_id/5626/~/pdfprofiltsrv.exe,-nuancewds.exe-and-microsoft-windows-desktop-search) on Nuance's website that mentions how their iFilter can sometimes cause issues with Windows Search.  To disable the iFilter, they recommend disabling the PDFProFiltSrv service and ending the NuanceWDS.exe process if it is running.  I also found that if you run a repair on Adobe Acrobat Reader, the Nuance PDF iFilter will be replaced by the Adobe Acrobat Reader iFilter.  You can also choose not to install the Nuance iFilter during the installation process by choosing the custom installation options.
 
