@@ -12,8 +12,8 @@ There were no errors in the event log indicating any issues.  If you tried insta
 
 I did not see any child processes of msiexec.exe or anything out of the ordinary other than the 100% processor utilization.  I selected the option to show the lower pane and set the lower pane to display handles.  There were thousands of handles for a specific key in the Registry by msiexec.exe:
 
-'''
+```
 HKLM\Software\Microsoft\Windows NT\Current Version\Terminal Server\Install\RefHive\Hewlett-Packard\
-'''
+```
 
 I looked at this section of the registry and there were thousands of keys.  I did a quick search to find some information about this section of the registry and I found an article on HP's website saying this section of the registry can get populated with a large number of keys over time and that it is safe to delete the keys.  I created a backup of the keys and deleted them.  I then tried installing an update and it installed in a couple of seconds.  There does not appear to be any solution for this issue yet, other than to delete the registry keys periodically.
