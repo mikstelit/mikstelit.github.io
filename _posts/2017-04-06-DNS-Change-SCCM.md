@@ -52,4 +52,3 @@ Catch
 }
 ```
 This turned out to be a very simple and successful solution.  The ability to monitor the deployment of the Application was a huge benefit.  Out of the 900 systems that needed to be updated, only 7 had issues updating their DNS server settings and I was able to manually update those 7 systems.
-
