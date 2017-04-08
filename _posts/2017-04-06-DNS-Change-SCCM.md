@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Updating DNS Settings Using SCCM
+date: 2017-04-06
 ---
 
 We recently replaced our DNS servers which meant we needed to update all systems to use the new DNS servers.  Usually, we could just update the DHCP server settings and that would take care of 95% of our systems, but we have several hundred systems that have statically assigned DNS servers.  I was tasked with finding a way to update the DNS settings on these systems with statically assigned DNS servers.  

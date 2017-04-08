@@ -1,6 +1,7 @@
 ---
 layout: post
 title: PowerShell Port Tester
+date: 2017-01-24
 ---
 
 We recently changed the VPN solution used at work.  Some users have had issues using the VPN from certain networks.  They would receive errors saying the remote server could not be contacted.  I ruled out any DNS issues as possible causes and then thought it could have something to do with the port being used by the VPN client.
