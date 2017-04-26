@@ -19,7 +19,7 @@ We can enable debug logging on our old DNS servers to log any incoming DNS queri
 		E.  Transport protocol: TCP
 		F.  Packet type: Request
 		G.  File path and name: C:\Temp\DNSLog.log
-		H.  Maximum size (bytes): Set to a reasonable size based on free disk space.
+		H.  Maximum size (bytes): Enter a reasonable size.
 	5.  Click OK
 
 Check on the log file after a few hours.  The log file will show you the IP address of the client making the DNS request, the type of request, the hostname being queried, and more.  You can write a script to parse the log file and show you as list of the IP addresses of clients still making queries on the DNS servers.
