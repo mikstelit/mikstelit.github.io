@@ -8,7 +8,7 @@ We recently setup Windows Server 2012 R2 DNS servers.  These new DNS servers wil
 
 We can enable debug logging on our old DNS servers to log any incoming DNS queries received by the old DNS servers.  Follow these steps to enable debug logging on the DNS server:
 
-	1.  Open DNS Manager on the server logging needs to be enabled.
+	1.  Open DNS Manager.
 	2.  Right click on the server and select Properties.
 	3.  Click on the Debug Logging tab.
 	4.  Select the following options:
